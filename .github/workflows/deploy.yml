@@ -1,0 +1,38 @@
+name: Deploy Flutter Web ke GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Java (Syarat Flutter)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Ambil Dependencies (pub get)
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        # Membangun web dengan base-href yang sesuai dengan repository Anda
+        run: flutter build web --release --base-href "/web_ultah/"
+
+      - name: Deploy ke GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
