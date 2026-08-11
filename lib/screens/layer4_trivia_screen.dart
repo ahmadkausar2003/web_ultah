@@ -37,6 +37,7 @@ class _Layer4TriviaScreenState extends State<Layer4TriviaScreen> {
     TriviaQuestion("Kalau kamu telat ngampus, menurut Sigmund Freud itu salah siapa?", ["Dosennya kepagian", "Alam bawah sadar pengen rebahan", "Alarmnya kurang keras"], 1),
     TriviaQuestion("Alat tes psikologi apa yang paling ampuh buat ngetes kesabaran?", ["Tes Rorschach", "Tes IQ", "Disuruh nungguin temen dandan"], 2),
     TriviaQuestion("Cara elegan nolak diajak nongkrong pas lagi bokek?", ["Pura-pura kesurupan", "Gak ada duit woy!", "Lagi butuh me-time buat inner child-ku"], 2),
+    TriviaQuestion("Kalau lagi banyak masalah selalu katakan kalimat", ["Ngatta Ngatta Deh", "Jancok", "All Izz Well"], 2),
   ];
 
   // SOAL KEDOKTERAN (Untuk Nabila)
@@ -46,6 +47,7 @@ class _Layer4TriviaScreenState extends State<Layer4TriviaScreen> {
     TriviaQuestion("Organ tubuh apa yang kerjanya paling lembur pas lagi minggu ujian?", ["Jantung (deg-degan)", "Kantung Mata", "Hati (menahan tangis)"], 1),
     TriviaQuestion("Temen tiba-tiba sakit perut habis makan seblak level 10, tindakan pertamamu?", ["Tertawakan dulu baru kasih obat", "Langsung RJP", "Bawa ke UGD pake helikopter"], 0),
     TriviaQuestion("Suara apa yang bikin anak kedokteran langsung reflek tegang?", ["Suara alarm EKG monitor", "Suara notif pacar", "Suara tukang bakso"], 0),
+    TriviaQuestion("Kalau lagi banyak masalah selalu katakan kalimat", ["Ngatta Ngatta Deh", "Jancok", "All Izz Well"], 2),
   ];
 
   Future<void> _checkAnswer(int index, int correctIndex, int totalQuestions) async {
