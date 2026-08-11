@@ -1,0 +1,47 @@
+Act as a Senior Flutter Web Developer. Saya ingin membangun sebuah aplikasi Flutter Web interaktif bertema "Misi Penyelamatan Pesta Ulang Tahun" yang ditujukan untuk 2 teman perempuan saya. Aplikasi ini akan terasa seperti mini-game dengan 7 layer (screen) yang memiliki alur cerita.
+
+Sebelum kita mulai ngoding, kamu WAJIB membaca, memahami, dan mematuhi STRICT RULES dan PRD (Product Requirements Document) di bawah ini. 
+
+=========================================
+🚨 STRICT RULES (WAJIB DIPATUHI) 🚨
+=========================================
+1. TIDAK ADA KODE YANG DIPOTONG: Jika saya meminta revisi pada suatu file atau membuat file baru, kamu WAJIB memberikan FULL CODE (seluruh isi file dari baris pertama hingga terakhir). Jangan pernah menggunakan komentar seperti "// ... kode lainnya tetap sama".
+2. TANYA SEBELUM MEREVISI: Jika saya meminta fitur baru atau revisi di bagian tertentu, tanyakan dulu kepada saya untuk menempelkan (paste) kode lama dari file tersebut. Setelah saya berikan kode lamanya, baru kamu analisis dan berikan Full Code perbaikannya. Ini mencegah ketidakselarasan logika.
+3. VERIFIKASI UTILITY/STATE SEBELUM CODING: Tanyakan apakah ada kode tambahan/utility (seperti formatter, helper, atau variabel state) yang tidak disebutkan sebelum kamu merombak logika yang kompleks.
+4. UI/UX HARUS KONSISTEN: Pastikan semua perbaikan/pembuatan UI mematuhi kaidah UI premium (Shadows lembut, Rounded Corners, Glassmorphism jika perlu). Jangan pernah menggunakan desain solid/flat biasa. Selalu perhatikan penanganan async gap (`if (!mounted) return;`).
+5. FORMATTER RUPIAH WAJIB (Aturan Global): Setiap kali mengelola TextFormField yang berhubungan dengan nominal uang (walau mungkin jarang di app ini), WAJIB menggunakan custom CurrencyInputFormatter agar titik pemisah ribuan otomatis muncul.
+6. ATURAN LINTER KETAT: Dilarang menggunakan penulisan if/else satu baris (one-liner) tanpa kurung kurawal. Selalu gunakan blok { ... } untuk setiap flow control agar terbebas dari warning `curly_braces_in_flow_control_structures`.
+
+=========================================
+📄 PRODUCT REQUIREMENTS DOCUMENT (PRD)
+=========================================
+- Nama Proyek: Birthday Web Quest
+- Target Platform: Flutter Web (Responsive: Mobile & Desktop, tapi utamakan aspect ratio Mobile).
+- Tema Visual: Cute, Bubbly, Pastel colors (Pink, Baby Blue, Mint).
+- Tipografi: Package `google_fonts` (Nunito & Fredoka One).
+- State Management: `provider` (untuk menyimpan nama teman yang dipilih, status audio, dan progress).
+- Animasi & Efek: WAJIB menggunakan `flutter_animate` untuk transisi (slide, fade, bounce, shake) dan `confetti` untuk Layer 7.
+- Audio: `audioplayers` untuk BGM (looping) dan SFX (Sound Effects) pada setiap tombol/interaksi.
+
+--- Detail 7 Layer (Alur Berurutan) ---
+1. GateScreen (Pemilihan Karakter): 2 Card tombol (Teman A & Teman B). Klik -> Simpan state -> Mainkan SFX -> Mulai BGM -> Pindah ke Layer 2.
+2. MissionScreen (Ruang Misi): Gambar maskot menangis. Teks Typewriter: "Gawat [Nama Teman]! Kue ulang tahunmu dicuri!". Tombol "Mulai Misi" berdenyut.
+3. BalloonScreen (Hutan Balon): Mini-game memecahkan 5 balon melayang (Stack & Positioned). Tap balon -> SFX Pop -> Balon hilang -> Counter naik. Jika 5, muncul tombol "Lanjut".
+4. TriviaScreen (Jembatan Memori): 1 Pertanyaan trivia hardcode. 3 Pilihan. Salah -> Tombol Getar (Shake) & SFX Salah. Benar -> Tombol Hijau, SFX Benar, Lanjut.
+5. BakingScreen (Dapur Ajaib): Ikon mangkuk & LinearProgressIndicator. Tombol "Kocok Cepat!". Spam klik tombol -> Progress naik 5% per klik, mangkuk bergetar. 100% -> Delay 1s -> Pindah layar.
+6. DecorateScreen (Dekorasi): Base gambar kue. Tombol toggle untuk hiasan (Cokelat, Stroberi, Lilin) menggunakan Stack. Minimal 1 hiasan aktif untuk lanjut.
+7. SurpriseScreen (Pesta Utama): Layar gelap 1 detik -> Terang! Confetti meledak. Teks "HAPPY BIRTHDAY [Nama Teman]". Carousel foto (ListView), Teks ucapan panjang, Tombol "Peluk Jauh" memunculkan partikel hati. BGM ganti ke lagu ultah.
+
+=========================================
+🛠️ STEP-BY-STEP IMPLEMENTATION PLAN
+=========================================
+Kita tidak akan membuat semuanya sekaligus agar kodenya maksimal. Kita akan kerjakan bertahap.
+- STEP 1: Inisialisasi Proyek, Struktur Folder (lib/core, lib/screens), Setup Provider (AppState), dan AudioManager.
+- STEP 2: Pembuatan Main.dart, Base Layout, dan Layer 1 (GateScreen) beserta styling UI premium-nya.
+- STEP 3: Layer 2 (MissionScreen) & Layer 3 (BalloonScreen) dengan integrasi audio dan flutter_animate.
+- STEP 4: Layer 4 (TriviaScreen) & Layer 5 (BakingScreen) dengan logika interaksi spam klik dan linter ketat.
+- STEP 5: Layer 6 (DecorateScreen) & Layer 7 (SurpriseScreen) finalisasi dengan Confetti dan transisi BGM.
+
+TUGASMU SEKARANG:
+Jangan tulis kode untuk Step 2 sampai 5. Mulailah HANYA dengan STEP 1.
+Berikan saya struktur folder yang ideal, konfigurasi `pubspec.yaml` (dependencies), dan kode FULL untuk file `app_state.dart` dan `audio_manager.dart`. Ingat semua STRICT RULES di atas!

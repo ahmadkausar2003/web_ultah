@@ -1,0 +1,40 @@
+name: web_ultah
+description: "A new Flutter project for Birthday Web Quest."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  provider: ^6.1.2
+  
+  # UI & Animations
+  flutter_animate: ^4.5.0
+  confetti: ^0.8.0
+  google_fonts: ^6.2.1
+  
+  # Audio
+  audioplayers: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Mendaftarkan folder assets
+  # Cukup tulis 'assets:' satu kali saja
+  assets:
+    - assets/images/
+    - assets/images/dewi/
+    - assets/images/nabila/
+    - assets/audio/
+    - assets/audio/dewi/
+    - assets/audio/nabila/
