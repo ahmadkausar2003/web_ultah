@@ -8,7 +8,7 @@ import 'package:confetti/confetti.dart';
 import '../core/audio/audio_manager.dart';
 import '../core/state/app_state.dart';
 import '../core/theme/app_theme.dart';
-import 'layer8_donation_screen.dart'; // Import Layer 8
+import 'layer8_donation_screen.dart'; 
 
 class Layer7SurpriseScreen extends StatefulWidget {
   const Layer7SurpriseScreen({super.key});
@@ -82,10 +82,8 @@ class _Layer7SurpriseScreenState extends State<Layer7SurpriseScreen> {
       debugPrint('Audio tidak ditemukan: $e');
     }
     
-    // Tembakkan Confetti Hati
     _heartConfettiController.play();
 
-    // Beri jeda 2 detik agar mereka menikmati efek hatinya, lalu BAM! Pindah ke Layer 8.
     await Future.delayed(const Duration(seconds: 2));
 
     if (!mounted) {
@@ -124,6 +122,12 @@ class _Layer7SurpriseScreenState extends State<Layer7SurpriseScreen> {
   Widget build(BuildContext context) {
     final friendName = context.watch<AppState>().selectedFriendName;
     final String folderName = friendName.toLowerCase(); 
+    final bool isDewi = folderName == 'dewi';
+
+    // Teks Ucapan yang Berbeda untuk Dewi (Psikologi) dan Nabila (Kedokteran)
+    final String greetingText = isDewi
+        ? "Selamat ulang tahun, Dewi ! 🥳\n\nYang kalau badmood mendadak langsung berubah jadi reog! Kurang-kurangin dong pasang muka ketatnya, mending sekarang fokus cari jati diri yang baru. Ingat, mantan hanyalah masa lalu yang perlu di-format ulang seperti laptop lemot. Yuk, buka lembaran baru, siapa tahu jati dirimu yang baru ini ketemunya sama jodoh yang lebih ganteng dan spek dewa! Nikmati pestanya, ya!"
+        : "Selamat ulang tahun, Nabila! 🎉\n\nYang sabar yah setiap minggu harus menahan diri biar tidak malpraktik gara-gara ketemu musuh bebuyutan berwujud mantan di divisi rumah sakit yang sama. Kerjaan koas sudah bikin tensi naik, ditambah lihat muka mantan pasti bikin pengen nyuntik dia pakai infus kosong kan? Semoga di usia baru ini kamu makin jago jaga imun dan iman. Biar si mantan menyesal seumur hidup setiap kali melihat pesonamu yang makin menyala di lorong RS. Semangat koasnya Nikmati pestanya, ya!";
 
     return Scaffold(
       backgroundColor: _isDark ? Colors.black : Colors.transparent,
@@ -227,6 +231,7 @@ class _Layer7SurpriseScreenState extends State<Layer7SurpriseScreen> {
 
                           const SizedBox(height: 30),
 
+                          // Teks Ucapan Dinamis Sesuai Karakter
                           Container(
                             padding: const EdgeInsets.all(24),
                             decoration: BoxDecoration(
@@ -235,7 +240,7 @@ class _Layer7SurpriseScreenState extends State<Layer7SurpriseScreen> {
                               boxShadow: AppTheme.softShadow,
                             ),
                             child: Text(
-                              "Selamat ulang tahun, $friendName!\n\nSemoga hari-harimu secerah senyummu. Tetap jadi orang yang kalem tapi energik, sukses terus di perkuliahan, dan semoga semua mimpimu terwujud! Pesta ini khusus buat kamu!",
+                              greetingText,
                               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                     height: 1.5,
                                     color: AppTheme.darkText,

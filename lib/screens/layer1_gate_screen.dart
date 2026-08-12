@@ -146,7 +146,7 @@ class _Layer1GateScreenState extends State<Layer1GateScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Siapa yang mau diselamatkan hari ini?",
+                      "silahkan di pilih dan untuk paswordnya tolong chat admin uca_sindoro",
                       style: Theme.of(context).textTheme.displayMedium?.copyWith(
                             color: Colors.white,
                             shadows: AppTheme.softShadow,
@@ -160,10 +160,10 @@ class _Layer1GateScreenState extends State<Layer1GateScreen> {
                     _buildCharacterCard(
                       context: context,
                       name: "Dewi",
-                      subtitle: "Anak Psikologi",
-                      icon: "🧠",
+                      subtitle: "Duta Melankolis",
+                      icon: "💃🏻",
                       color: const Color(0xFFB9A0E0),
-                      onTap: () => _showPasswordDialog(context, "Dewi", "psikolog"),
+                      onTap: () => _showPasswordDialog(context, "Dewi", "all is well"),
                     ).animate().fade(delay: 300.ms).slideX(begin: -0.3),
 
                     const SizedBox(height: 20),
@@ -172,10 +172,10 @@ class _Layer1GateScreenState extends State<Layer1GateScreen> {
                     _buildCharacterCard(
                       context: context,
                       name: "Nabila",
-                      subtitle: "Anak Kedokteran",
-                      icon: "🩺",
+                      subtitle: "Duta Cari Kesibukan",
+                      icon: "💃🏻",
                       color: const Color(0xFF88D49E),
-                      onTap: () => _showPasswordDialog(context, "Nabila", "dokter"),
+                      onTap: () => _showPasswordDialog(context, "Nabila", "all is well"),
                     ).animate().fade(delay: 500.ms).slideX(begin: 0.3),
                   ],
                 ),

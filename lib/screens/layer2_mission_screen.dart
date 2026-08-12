@@ -89,7 +89,7 @@ class _Layer2MissionScreenState extends State<Layer2MissionScreen> {
                         boxShadow: AppTheme.softShadow,
                       ),
                       child: _TypewriterText(
-                        text: "Woy $friendName! Gawat darurat! Kue ultah lo diculik sama komplotan tukang rusuh! Kalau gak diselamatkan, pesta kita berubah jadi acara yasinan! Buruan tolongin!",
+                        text: "Woy $friendName! Gawat darurat! Kue ultah mu na bawa lari asta! Kalau tidak diselamatkan, si duta klarifikasi bakalan jadi monster kabulammats! Buruan tolongin!",
                       ),
                     ).animate().scale(delay: 300.ms, duration: 400.ms, curve: Curves.elasticOut),
 
@@ -103,7 +103,7 @@ class _Layer2MissionScreenState extends State<Layer2MissionScreen> {
                         foregroundColor: Colors.black87,
                         padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 18),
                       ),
-                      child: const Text("GAS TERUS, SELAMATKAN KUE! 🚀"),
+                      child: const Text("GAS, SELAMATKAN ASTA Duta Klarifikasi! 🚀"),
                     )
                     .animate(onPlay: (controller) => controller.repeat(reverse: true))
                     .scale(
