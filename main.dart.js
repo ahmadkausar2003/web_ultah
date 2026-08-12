@@ -85033,7 +85033,7 @@ case 1:return A.C(q,r)
 case 2:return A.B(o.at(-1),r)}})
 return A.D($async$t0,r)},
 K(a){var s=this,r=null,q=A.a3(a).ok.b
-return A.pL(r,A.de(r,A.mF(A.fQ(new A.dU(B.cc,new A.cI(B.ng,A.fo(A.c([A.jx(A.d8(A.bA(A.bN("Siapa yang mau diselamatkan hari ini?",r,r,r,q==null?r:q.Gi(B.j,$.fh()),B.a5,r),r,r),r,A.aY(5e5,0)),-0.2,r,r,r),B.f4,A.ado(A.d8(A.bA(s.LB(B.D_,a,"\ud83e\udde0","Dewi",new A.akk(s,a),"Anak Psikologi"),r,r),A.aY(3e5,0),r),-0.3),B.i8,A.ado(A.d8(A.bA(s.LB(B.DT,a,"\ud83e\ude7a","Nabila",new A.akl(s,a),"Anak Kedokteran"),r,r),A.aY(5e5,0),r),0.3)],t.E),B.av,B.cK,B.b_),r),r),r,r),!0),B.r,r,B.AV,r,r,r,r,r,r,r))},
+return A.pL(r,A.de(r,A.mF(A.fQ(new A.dU(B.cc,new A.cI(B.ng,A.fo(A.c([A.jx(A.d8(A.bA(A.bN("silahkan di pilih dan untuk paswordnya tolong chat admin uca_sindoro",r,r,r,q==null?r:q.Gi(B.j,$.fh()),B.a5,r),r,r),r,A.aY(5e5,0)),-0.2,r,r,r),B.f4,A.ado(A.d8(A.bA(s.LB(B.D_,a,"\ud83d\udc83\ud83c\udffb","Dewi",new A.akk(s,a),"Duta Melankolis"),r,r),A.aY(3e5,0),r),-0.3),B.i8,A.ado(A.d8(A.bA(s.LB(B.DT,a,"\ud83d\udc83\ud83c\udffb","Nabila",new A.akl(s,a),"Duta Cari Kesibukan"),r,r),A.aY(5e5,0),r),0.3)],t.E),B.av,B.cK,B.b_),r),r),r,r),!0),B.r,r,B.AV,r,r,r,r,r,r,r))},
 LB(a,b,c,d,e,f){var s=null,r=A.dc(24),q=A.asK(10,10),p=A.at(B.c.aE(76.5),B.j.A()>>>16&255,B.j.A()>>>8&255,B.j.A()&255),o=A.dc(24),n=A.r8(A.at(153,B.j.A()>>>16&255,B.j.A()>>>8&255,B.j.A()&255),1.5),m=$.fh(),l=A.de(s,A.bN(c,s,s,s,B.Ri,s,s),B.r,s,new A.c3(a,s,s,s,m,s,B.dW),s,s,s,B.Fw,s,s,s),k=A.a3(b).ok.b,j=t.E
 return A.rZ(s,A.hB(A.I3(r,A.arZ(A.de(s,A.atf(A.c([l,B.Q6,A.fo(A.c([A.bN(d,s,s,s,k==null?s:k.yj(B.j,24),s,s),A.bN(f,s,s,s,B.Ro,s,s)],j),B.bR,B.aG,B.b_)],j),B.aG,B.b_,0),B.r,s,new A.c3(p,s,n,o,m,s,B.V),s,s,s,B.jr,s,s,s),q),s),B.f6,s,s,s,s),B.aj,!1,s,s,s,s,s,s,s,s,s,s,s,s,s,e,s,s,s)}}
 A.akj.prototype={
@@ -85093,10 +85093,10 @@ A.ake.prototype={
 $1(a){return B.H_},
 $S:544}
 A.akk.prototype={
-$0(){return this.a.Qs(this.b,"Dewi","psikolog")},
+$0(){return this.a.Qs(this.b,"Dewi","all is well")},
 $S:0}
 A.akl.prototype={
-$0(){return this.a.Qs(this.b,"Nabila","dokter")},
+$0(){return this.a.Qs(this.b,"Nabila","all is well")},
 $S:0}
 A.oO.prototype={
 ag(){return new A.Du()}}
@@ -85125,7 +85125,7 @@ case 1:return A.C(q,r)
 case 2:return A.B(o.at(-1),r)}})
 return A.D($async$xh,r)},
 K(a){var s=null,r=A.tE(a,!0,t.Tz).a,q=$.fh()
-return A.pL(s,A.de(s,A.mF(A.fQ(new A.dU(B.cc,new A.cI(B.ng,A.fo(A.c([A.eN(A.N3(A.bA(A.de(s,B.UQ,B.r,s,new A.c3(B.j,s,A.r8(B.eL,4),s,q,s,B.dW),s,s,s,B.js,s,s,s),s,new A.akn()),s,s,A.aY(6e5,0),6),B.us,s,s,s,B.kD),B.cQ,A.eN(A.bA(A.de(s,new A.Fw("Woy "+r+"! Gawat darurat! Kue ultah lo diculik sama komplotan tukang rusuh! Kalau gak diselamatkan, pesta kita berubah jadi acara yasinan! Buruan tolongin!",s),B.r,s,new A.c3(B.j,s,s,A.dc(24),q,s,B.V),s,s,s,B.em,s,s,s),s,s),s,B.bz,A.aY(3e5,0),A.aY(4e5,0),s),B.f4,A.eN(A.bA(A.rO(B.UY,this.gafa(),A.lJ(s,s,B.eL,s,s,s,s,s,s,B.G,s,s,B.FG,s,s,s,s,s,s,s)),s,new A.ako()),B.hv,B.d9,s,A.aY(6e5,0),B.M5)],t.E),B.av,B.cK,B.b_),s),s),s,s),!0),B.r,s,B.AS,s,s,s,s,s,s,s))}}
+return A.pL(s,A.de(s,A.mF(A.fQ(new A.dU(B.cc,new A.cI(B.ng,A.fo(A.c([A.eN(A.N3(A.bA(A.de(s,B.UQ,B.r,s,new A.c3(B.j,s,A.r8(B.eL,4),s,q,s,B.dW),s,s,s,B.js,s,s,s),s,new A.akn()),s,s,A.aY(6e5,0),6),B.us,s,s,s,B.kD),B.cQ,A.eN(A.bA(A.de(s,new A.Fw("Woy "+r+"! Gawat darurat! Kue ultah mu na bawa lari asta! Kalau tidak diselamatkan, si duta klarifikasi bakalan jadi monster kabulammats! Buruan tolongin!",s),B.r,s,new A.c3(B.j,s,s,A.dc(24),q,s,B.V),s,s,s,B.em,s,s,s),s,s),s,B.bz,A.aY(3e5,0),A.aY(4e5,0),s),B.f4,A.eN(A.bA(A.rO(B.UY,this.gafa(),A.lJ(s,s,B.eL,s,s,s,s,s,s,B.G,s,s,B.FG,s,s,s,s,s,s,s)),s,new A.ako()),B.hv,B.d9,s,A.aY(6e5,0),B.M5)],t.E),B.av,B.cK,B.b_),s),s),s,s),!0),B.r,s,B.AS,s,s,s,s,s,s,s))}}
 A.akm.prototype={
 $1(a){return B.H0},
 $S:545}
@@ -85565,31 +85565,30 @@ o.al(new A.rB(0.2*q,s,-0.25*q,r,n,p))
 o.al(new A.rB(1.25*q,r,0.8*q,s,n,m))
 o.al(new A.k5())
 return o},
-K(a){var s,r,q,p,o,n,m,l=this,k=null,j=8e5,i=A.tE(a,!0,t.Tz).a,h=l.w?B.l:B.J,g=t.E,f=A.c([],g)
+K(a){var s,r,q,p,o,n,m,l=this,k=null,j=8e5,i=A.tE(a,!0,t.Tz).a,h=i.toLowerCase(),g=h==="dewi"?"Selamat ulang tahun, Dewi ! \ud83e\udd73\n\nYang kalau badmood mendadak langsung berubah jadi reog! Kurang-kurangin dong pasang muka ketatnya, mending sekarang fokus cari jati diri yang baru. Ingat, mantan hanyalah masa lalu yang perlu di-format ulang seperti laptop lemot. Yuk, buka lembaran baru, siapa tahu jati dirimu yang baru ini ketemunya sama jodoh yang lebih ganteng dan spek dewa! Nikmati pestanya, ya!":"Selamat ulang tahun, Nabila! \ud83c\udf89\n\nYang sabar yah setiap minggu harus menahan diri biar tidak malpraktik gara-gara ketemu musuh bebuyutan berwujud mantan di divisi rumah sakit yang sama. Kerjaan koas sudah bikin tensi naik, ditambah lihat muka mantan pasti bikin pengen nyuntik dia pakai infus kosong kan? Semoga di usia baru ini kamu makin jago jaga imun dan iman. Biar si mantan menyesal seumur hidup setiap kali melihat pesonamu yang makin menyala di lorong RS. Semangat koasnya Nikmati pestanya, ya!",f=l.w?B.l:B.J,e=t.E,d=A.c([],e)
 if(!l.w){s=A.bA(A.de(k,k,B.r,k,B.AR,k,k,k,k,k,k,k),k,k)
 r=A.aY(4e5,0)
-f.push(A.ayp(0,s.ng(A.awY(0,k,k,r,1))))}if(l.w)g=A.d8(A.bA(B.UT,k,k),k,A.aY(j,0))
+d.push(A.ayp(0,s.ng(A.awY(0,k,k,r,1))))}if(l.w)e=A.d8(A.bA(B.UT,k,k),k,A.aY(j,0))
 else{s=A.a3(a).ok.a
 s=A.eN(A.bA(A.bN("HAPPY BIRTHDAY",k,k,k,s==null?k:s.yk(B.j,34,$.fh()),B.a5,k),k,k),k,B.bz,k,A.aY(j,0),k)
 r=A.a3(a).ok.a
 r=r==null?k:r.yk(B.aK,52,$.fh())
 r=A.eN(A.bA(A.bN(i.toUpperCase(),k,k,k,r,B.a5,k),k,k),k,B.bz,A.aY(2e5,0),A.aY(j,0),k)
-q=A.jw(A.ado(A.d8(A.bA(new A.yS(new A.adp(new A.akK(i.toLowerCase()),10,!0,!0,!0,k),k,B.aW,!1,l.f,k,B.LL,!1,k,k,10,B.aj,k,k,B.X,B.ay,k),k,k),A.aY(6e5,0),k),0.2),180,k)
+q=A.jw(A.ado(A.d8(A.bA(new A.yS(new A.adp(new A.akK(h),10,!0,!0,!0,k),k,B.aW,!1,l.f,k,B.LL,!1,k,k,10,B.aj,k,k,B.X,B.ay,k),k,k),A.aY(6e5,0),k),0.2),180,k)
 p=A.at(B.c.aE(229.5),B.j.A()>>>16&255,B.j.A()>>>8&255,B.j.A()&255)
 o=A.dc(24)
 n=$.fh()
 m=A.a3(a).ok.y
-m=m==null?k:m.ajq(B.aK,B.a7,1.5)
-g=A.c([B.z0,s,r,B.cQ,q,B.cQ,A.jx(A.d8(A.bA(A.de(k,A.bN("Selamat ulang tahun, "+i+"!\n\nSemoga hari-harimu secerah senyummu. Tetap jadi orang yang kalem tapi energik, sukses terus di perkuliahan, dan semoga semua mimpimu terwujud! Pesta ini khusus buat kamu!",k,k,k,m,B.a5,k),B.r,k,new A.c3(p,k,k,o,n,k,B.V),k,k,k,B.em,k,k,k),k,k),A.aY(j,0),k),0.2,k,k,k),B.cQ,A.eN(A.d8(A.bA(A.rO(B.UP,l.gafD(),A.lJ(k,k,B.j,k,k,k,k,k,k,B.ec,k,k,B.Fq,k,k,k,k,k,k,k)),k,k),A.aY(1e6,0),k),k,k,k,k,k),B.cQ],g)
-n=A.as([null,0],t.LO,t.S)
-g=new A.dU(B.cc,new A.yS(new A.adr(!0,!0,!0,g,n),B.em,B.aC,!1,k,k,B.An,!1,k,k,10,B.aj,k,k,B.X,B.ay,k),k)}f.push(A.mF(A.fQ(g,k,k),!0))
-g=l.d
-g===$&&A.a()
-f.push(new A.fN(B.fj,k,k,A.awo(1.5707963267948966,B.IH,g,k,0.08,0.15,6,3,60),k))
-g=l.e
-g===$&&A.a()
-f.push(new A.fN(B.d_,k,k,A.awo(-1.5707963267948966,B.Ih,g,l.ga5p(),0.12,0.1,12,6,25),k))
-return A.pL(h,A.mQ(B.cZ,f,B.X,B.ck))}}
+e=A.c([B.z0,s,r,B.cQ,q,B.cQ,A.jx(A.d8(A.bA(A.de(k,A.bN(g,k,k,k,m==null?k:m.ajq(B.aK,B.a7,1.5),B.a5,k),B.r,k,new A.c3(p,k,k,o,n,k,B.V),k,k,k,B.em,k,k,k),k,k),A.aY(j,0),k),0.2,k,k,k),B.cQ,A.eN(A.d8(A.bA(A.rO(B.UP,l.gafD(),A.lJ(k,k,B.j,k,k,k,k,k,k,B.ec,k,k,B.Fq,k,k,k,k,k,k,k)),k,k),A.aY(1e6,0),k),k,k,k,k,k),B.cQ],e)
+s=A.as([null,0],t.LO,t.S)
+e=new A.dU(B.cc,new A.yS(new A.adr(!0,!0,!0,e,s),B.em,B.aC,!1,k,k,B.An,!1,k,k,10,B.aj,k,k,B.X,B.ay,k),k)}d.push(A.mF(A.fQ(e,k,k),!0))
+e=l.d
+e===$&&A.a()
+d.push(new A.fN(B.fj,k,k,A.awo(1.5707963267948966,B.IH,e,k,0.08,0.15,6,3,60),k))
+e=l.e
+e===$&&A.a()
+d.push(new A.fN(B.d_,k,k,A.awo(-1.5707963267948966,B.Ih,e,l.ga5p(),0.12,0.1,12,6,25),k))
+return A.pL(f,A.mQ(B.cZ,d,B.X,B.ck))}}
 A.akH.prototype={
 $0(){this.a.w=!1},
 $S:0}
@@ -90997,7 +90996,7 @@ B.UV=new A.dx("Batal",null,B.Ui,null,null,null,null,null,null)
 B.UW=new A.dx("MANTAP! LANJUT JALAN \ud83c\udfc3\u200d\u2642\ufe0f",null,null,null,null,null,null,null,null)
 B.Ul=new A.o(!0,null,null,null,null,null,60,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.UX=new A.dx("\ud83d\udcb8 \ud83e\udd11 \ud83d\udcb8",null,B.Ul,null,null,null,null,null,null)
-B.UY=new A.dx("GAS TERUS, SELAMATKAN KUE! \ud83d\ude80",null,null,null,null,null,null,null,null)
+B.UY=new A.dx("GAS, SELAMATKAN ASTA Duta Klarifikasi! \ud83d\ude80",null,null,null,null,null,null,null,null)
 B.Tg=new A.o(!0,B.hq,null,null,null,null,14,B.a7,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.V_=new A.dx("Dompet DANA:",null,B.Tg,null,null,null,null,null,null)
 B.Uo=new A.o(!0,null,null,null,null,null,45,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
