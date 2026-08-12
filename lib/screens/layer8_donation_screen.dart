@@ -1,12 +1,10 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:screenshot/screenshot.dart';
 
 import '../core/audio/audio_manager.dart';
 import '../core/state/app_state.dart';
@@ -22,14 +20,6 @@ class Layer8DonationScreen extends StatefulWidget {
 class _Layer8DonationScreenState extends State<Layer8DonationScreen> {
   bool _isCopied = false;
   final String _danaNumber = "082314118811";
-  final ScreenshotController _screenshotController = ScreenshotController();
-
-  final List<Map<String, dynamic>> _frames = [
-    {"color": const Color(0xFFE8F5E9), "icon": "🧠", "textColor": Colors.black87},
-    {"color": const Color(0xFFE3F2FD), "icon": "🩺", "textColor": Colors.black87},
-    {"color": const Color(0xFFFFE4E1), "icon": "🌸", "textColor": Colors.black87},
-    {"color": const Color(0xFF1E1E1E), "icon": "🖤", "textColor": Colors.white},
-  ];
 
   Future<void> _copyToClipboard() async {
     await Clipboard.setData(ClipboardData(text: _danaNumber));
@@ -40,76 +30,33 @@ class _Layer8DonationScreenState extends State<Layer8DonationScreen> {
     });
   }
 
-  Future<void> _downloadPhotoStrip() async {
+  Future<void> _downloadFinalPhoto() async {
     try {
       await AudioManager().playSfx('click.mp3');
-      final imageBytes = await _screenshotController.capture(delay: const Duration(milliseconds: 10));
-      if (imageBytes != null) {
-        final base64data = base64Encode(imageBytes);
+      
+      // Ambil hasil foto yang sudah disimpan di memori dari Layer 3
+      final finalImageBytes = Provider.of<AppState>(context, listen: false).finalPhotoboothStrip;
+      
+      if (finalImageBytes != null) {
+        final base64data = base64Encode(finalImageBytes);
         final a = html.AnchorElement(href: 'data:image/png;base64,$base64data');
-        a.download = 'Photobooth_Ultah.png';
+        a.download = 'Photobooth_Ultah_Keren.png'; // Nama file
         a.click();
         a.remove();
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Foto diunduh! Cek galeri kamu 🥳"), backgroundColor: Colors.green));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Foto berhasil diunduh! Cek galeri kamu 🥳"), backgroundColor: Colors.green));
       }
     } catch (e) {
       debugPrint("Gagal download: $e");
     }
   }
 
-  Widget _buildKoreanPhotoboothStrip(List<Uint8List> images, Map<String, dynamic> frame, String friendName) {
-    bool isGrid = images.length > 3;
-    return Container(
-      width: isGrid ? 320 : 180,
-      padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 40),
-      decoration: BoxDecoration(
-        color: frame["color"],
-        borderRadius: BorderRadius.circular(4), 
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (isGrid)
-            Wrap(
-              spacing: 12, runSpacing: 12, alignment: WrapAlignment.center,
-              children: images.map((img) => _buildPhotoItem(img, 120, isGrid: true)).toList(),
-            )
-          else
-            Column(
-              children: images.map((img) => Padding(
-                padding: const EdgeInsets.only(bottom: 12), 
-                child: _buildPhotoItem(img, 150, isGrid: false),
-              )).toList(),
-            ),
-          
-          const SizedBox(height: 20),
-          Text(
-            "${frame["icon"]} $friendName's Day ${frame["icon"]}", 
-            style: TextStyle(fontFamily: 'Courier', fontWeight: FontWeight.bold, fontSize: isGrid ? 18 : 12, color: frame["textColor"]),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPhotoItem(Uint8List img, double height, {required bool isGrid}) {
-    return Container(
-      height: height,
-      width: isGrid ? (height * 1.1) : (height * 0.9),
-      decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Colors.black87, width: 2), borderRadius: BorderRadius.circular(4)),
-      child: ClipRRect(borderRadius: BorderRadius.circular(2), child: Image.memory(img, fit: BoxFit.cover)),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final appState = context.watch<AppState>();
     final friendName = appState.selectedFriendName;
-    final images = appState.photoboothImages;
     
-    // Safety check jika _selectedFrame belum ter-set
-    final frame = _frames[appState.selectedFrame < _frames.length ? appState.selectedFrame : 0];
+    // Ini adalah foto UTUH yang sudah di-zoom & diedit dari Layer 3
+    final finalImage = appState.finalPhotoboothStrip; 
 
     return Scaffold(
       body: Container(
@@ -126,16 +73,10 @@ class _Layer8DonationScreenState extends State<Layer8DonationScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // ==========================================
-                    // EMOJI UANG TERBANG YANG DIKEMBALIKAN! 💸
-                    // ==========================================
-                    const Text(
-                      "💸 🤑 💸",
-                      style: TextStyle(fontSize: 60),
-                    )
-                    .animate(onPlay: (controller) => controller.repeat(reverse: true))
-                    .slideY(begin: -0.15, end: 0.15, duration: 1200.ms, curve: Curves.easeInOutSine)
-                    .scale(begin: const Offset(1, 1), end: const Offset(1.1, 1.1)),
+                    const Text("💸 🤑 💸", style: TextStyle(fontSize: 60))
+                        .animate(onPlay: (controller) => controller.repeat(reverse: true))
+                        .slideY(begin: -0.15, end: 0.15, duration: 1200.ms, curve: Curves.easeInOutSine)
+                        .scale(begin: const Offset(1, 1), end: const Offset(1.1, 1.1)),
 
                     const SizedBox(height: 20),
 
@@ -144,21 +85,23 @@ class _Layer8DonationScreenState extends State<Layer8DonationScreen> {
                     Text("Jangan lupa bawa pulang fotonya!", style: TextStyle(color: Colors.green[900], fontWeight: FontWeight.bold, fontSize: 18)).animate().fade(delay: 300.ms),
                     const SizedBox(height: 30),
 
-                    // Screenshot Wrapper untuk Download Foto
-                    if (images.isNotEmpty)
-                      Screenshot(
-                        controller: _screenshotController,
-                        child: _buildKoreanPhotoboothStrip(images, frame, friendName),
+                    // TAMPILKAN HASIL AKHIR
+                    if (finalImage != null)
+                      Container(
+                        decoration: BoxDecoration(
+                          boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 15, offset: Offset(0, 5))],
+                        ),
+                        // Langsung render image dari Uint8List (sangat ringan)
+                        child: Image.memory(finalImage, width: 250), 
                       ).animate().scale(delay: 400.ms, curve: Curves.elasticOut),
 
                     const SizedBox(height: 30),
                     
-                    // Tombol Download
                     SizedBox(
                       width: double.infinity,
                       height: 55,
                       child: ElevatedButton.icon(
-                        onPressed: _downloadPhotoStrip,
+                        onPressed: _downloadFinalPhoto,
                         style: ElevatedButton.styleFrom(backgroundColor: Colors.pinkAccent, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
                         icon: const Icon(Icons.download),
                         label: const Text("DOWNLOAD HASIL FOTO 📸", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
@@ -167,13 +110,12 @@ class _Layer8DonationScreenState extends State<Layer8DonationScreen> {
 
                     const SizedBox(height: 40),
 
-                    // Card Rekening DANA
                     Container(
                       padding: const EdgeInsets.all(28),
                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(24), border: Border.all(color: Colors.greenAccent, width: 3)),
                       child: Column(
                         children: [
-                          Text("Sebagai bentuk apresiasi web dan studio foto gratis ini di buat dengan keringat,air mata dan kurang tidur.. 😌\n\nKalau $friendName kebetulan kesurupan pengen transfer 100 ribu buat jajanin kawanmu ini, pintu rekeningku terbuka sangat lebar lho! 😂✌️", style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.5), textAlign: TextAlign.center),
+                          Text("Sebagai bentuk apresiasi web dan studio foto gratis ini... 😌\n\nKalau $friendName kebetulan kesurupan pengen transfer 100 ribu buat jajanin kawanmu ini, pintu rekeningku terbuka sangat lebar lho! 😂✌️", style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.5), textAlign: TextAlign.center),
                           const SizedBox(height: 30),
                           Container(
                             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
@@ -192,7 +134,6 @@ class _Layer8DonationScreenState extends State<Layer8DonationScreen> {
 
                     const SizedBox(height: 20),
 
-                    // Tombol Salin
                     SizedBox(
                       width: double.infinity,
                       height: 55,

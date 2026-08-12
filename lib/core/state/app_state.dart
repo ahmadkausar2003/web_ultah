@@ -5,13 +5,15 @@ class AppState extends ChangeNotifier {
   String _selectedFriendName = '';
   String get selectedFriendName => _selectedFriendName;
 
-  // Memori untuk menyimpan hasil jepretan Photobooth
   List<Uint8List> _photoboothImages = [];
   List<Uint8List> get photoboothImages => _photoboothImages;
 
-  // Memori untuk menyimpan tema frame yang dipilih
   int _selectedFrame = 0;
   int get selectedFrame => _selectedFrame;
+
+  // Memori baru untuk menyimpan HASIL AKHIR (sudah di-edit/zoom/geser)
+  Uint8List? _finalPhotoboothStrip;
+  Uint8List? get finalPhotoboothStrip => _finalPhotoboothStrip;
 
   void setFriendName(String name) {
     _selectedFriendName = name;
@@ -25,6 +27,11 @@ class AppState extends ChangeNotifier {
 
   void setSelectedFrame(int index) {
     _selectedFrame = index;
+    notifyListeners();
+  }
+
+  void setFinalPhotoboothStrip(Uint8List image) {
+    _finalPhotoboothStrip = image;
     notifyListeners();
   }
 }
