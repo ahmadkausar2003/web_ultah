@@ -1,22 +1,30 @@
-import 'package:flutter/material.dart';
+import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 
 class AppState extends ChangeNotifier {
   String _selectedFriendName = '';
-  bool _isAudioMuted = false;
-
-  // Getter
   String get selectedFriendName => _selectedFriendName;
-  bool get isAudioMuted => _isAudioMuted;
 
-  // Setter untuk nama teman (Dipanggil di Layer 1)
+  // Memori untuk menyimpan hasil jepretan Photobooth
+  List<Uint8List> _photoboothImages = [];
+  List<Uint8List> get photoboothImages => _photoboothImages;
+
+  // Memori untuk menyimpan tema frame yang dipilih
+  int _selectedFrame = 0;
+  int get selectedFrame => _selectedFrame;
+
   void setFriendName(String name) {
     _selectedFriendName = name;
     notifyListeners();
   }
 
-  // Toggle untuk mematikan/menyalakan semua suara
-  void toggleAudio() {
-    _isAudioMuted = !_isAudioMuted;
+  void setPhotoboothImages(List<Uint8List> images) {
+    _photoboothImages = images;
+    notifyListeners();
+  }
+
+  void setSelectedFrame(int index) {
+    _selectedFrame = index;
     notifyListeners();
   }
 }

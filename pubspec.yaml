@@ -21,6 +21,10 @@ dependencies:
   # Audio
   audioplayers: ^6.0.0
 
+  # FOTO & DOWNLOAD (Posisi yang benar ada di sini)
+  camera: ^0.11.0+2
+  screenshot: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

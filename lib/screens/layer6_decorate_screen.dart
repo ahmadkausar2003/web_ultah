@@ -18,6 +18,7 @@ class _Layer6DecorateScreenState extends State<Layer6DecorateScreen> {
   bool _hasCandle = false;
   bool _hasPetai = false; // Toping slengean
 
+  // Tombol hanya aktif jika minimal 1 toping dipilih
   bool get _canProceed {
     return _hasStrawberry || _hasChocolate || _hasCandle || _hasPetai;
   }
@@ -57,7 +58,8 @@ class _Layer6DecorateScreenState extends State<Layer6DecorateScreen> {
       return;
     }
 
-    Navigator.push(
+    // PERBAIKAN: Gunakan pushReplacement agar memori browser tidak penuh/macet
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => const Layer7SurpriseScreen(),
@@ -170,14 +172,20 @@ class _Layer6DecorateScreenState extends State<Layer6DecorateScreen> {
                       width: double.infinity,
                       height: 55,
                       child: ElevatedButton(
+                        // Tombol hanya bisa diklik kalau _canProceed bernilai true (ada hiasan yang dipilih)
                         onPressed: _canProceed ? _finishDecoration : null,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: _canProceed ? Colors.greenAccent : Colors.grey,
+                          backgroundColor: _canProceed ? Colors.greenAccent : Colors.grey[400],
                           foregroundColor: Colors.black87,
+                          elevation: _canProceed ? 5 : 0,
                         ),
                         child: Text(
-                          _canProceed ? "Bawa Kue ke Pesta! 🥳" : "Pilih minimal 1 toping woy!",
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          _canProceed ? "BAWA KUE KE PESTA! 🥳" : "Pilih minimal 1 toping woy!",
+                          style: TextStyle(
+                            fontSize: 16, 
+                            fontWeight: FontWeight.bold,
+                            color: _canProceed ? Colors.black87 : Colors.black54,
+                          ),
                         ),
                       ),
                     ).animate().fade(delay: 400.ms),
@@ -198,7 +206,7 @@ class _Layer6DecorateScreenState extends State<Layer6DecorateScreen> {
         cursor: SystemMouseCursors.click,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
           decoration: BoxDecoration(
             color: isActive ? Colors.yellowAccent : Colors.white,
             borderRadius: BorderRadius.circular(14),

@@ -1,12 +1,14 @@
 import 'dart:async';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../core/audio/audio_manager.dart';
 import '../core/state/app_state.dart';
 import '../core/theme/app_theme.dart';
-import 'layer3_balloon_screen.dart';
+import 'layer3_balloon_screen.dart'; 
 
 class Layer2MissionScreen extends StatefulWidget {
   const Layer2MissionScreen({super.key});
@@ -16,102 +18,179 @@ class Layer2MissionScreen extends StatefulWidget {
 }
 
 class _Layer2MissionScreenState extends State<Layer2MissionScreen> {
-  Future<void> _startMission() async {
+  CameraController? _cameraController;
+  List<Uint8List> _capturedImages = [];
+  bool _isCameraReady = false;
+  bool _isCapturing = false;
+  int _photoCountGoal = 3;
+  int _countdown = 3;
+  String _statusText = "Siap-siap pasang muka paling cakep!";
+
+  @override
+  void initState() {
+    super.initState();
+    _initCamera();
+  }
+
+  Future<void> _initCamera() async {
     try {
-      await AudioManager().playSfx('click.mp3');
+      final cameras = await availableCameras();
+      if (cameras.isNotEmpty) {
+        final frontCamera = cameras.firstWhere(
+            (c) => c.lensDirection == CameraLensDirection.front,
+            orElse: () => cameras.first);
+
+        _cameraController = CameraController(frontCamera, ResolutionPreset.medium, enableAudio: false);
+        await _cameraController!.initialize();
+        if (mounted) {
+          setState(() {
+            _isCameraReady = true;
+          });
+        }
+      } else {
+        setState(() => _statusText = "Yah, kameranya gak ketemu :(");
+      }
     } catch (e) {
-      debugPrint('Audio belum ditemukan: $e');
+      setState(() => _statusText = "Beri izin akses kamera di browser kamu ya!");
+      debugPrint('Error kamera: $e');
+    }
+  }
+
+  Future<void> _startPhotobooth() async {
+    if (_isCapturing || !_isCameraReady || _cameraController == null) return;
+    
+    setState(() {
+      _isCapturing = true;
+      _capturedImages.clear();
+    });
+
+    for (int i = 0; i < _photoCountGoal; i++) {
+      for (int c = 3; c > 0; c--) {
+        if (!mounted) return;
+        setState(() {
+          _countdown = c;
+          _statusText = "Gaya ke-${i + 1}... $c";
+        });
+        try { await AudioManager().playSfx('click.mp3'); } catch (e) {}
+        await Future.delayed(const Duration(seconds: 1));
+      }
+
+      if (!mounted) return;
+      setState(() => _statusText = "CEKREK! 📸");
+      try { await AudioManager().playSfx('pop.mp3'); } catch (e) {}
+      
+      try {
+        final xFile = await _cameraController!.takePicture();
+        final bytes = await xFile.readAsBytes();
+        _capturedImages.add(bytes);
+      } catch (e) {
+        debugPrint('Gagal jepret: $e');
+      }
+      
+      await Future.delayed(const Duration(milliseconds: 600));
     }
 
-    if (!mounted) {
-      return;
-    }
+    if (mounted) {
+      // Simpan foto ke state memori
+      Provider.of<AppState>(context, listen: false).setPhotoboothImages(_capturedImages);
+      
+      // PERBAIKAN: Matikan hardware kamera sebelum pindah layar
+      final oldController = _cameraController;
+      setState(() {
+        _cameraController = null;
+        _isCameraReady = false;
+      });
+      await oldController?.dispose();
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const Layer3BalloonScreen(),
-      ),
-    );
+      // PERBAIKAN: Gunakan pushReplacement agar tidak menumpuk
+      Navigator.pushReplacement(
+        context, 
+        MaterialPageRoute(builder: (context) => const Layer3BalloonScreen())
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _cameraController?.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final friendName = context.watch<AppState>().selectedFriendName;
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFF9A8B),
-              Color(0xFFFF6A88),
-            ],
-          ),
+          gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFFE0C3FC), Color(0xFF8EC5FC)]),
         ),
         child: SafeArea(
           child: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 600),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.all(24.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Maskot Stres Berputar/Bergetar
-                    Container(
-                      padding: const EdgeInsets.all(28),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: AppTheme.softShadow,
-                        border: Border.all(color: Colors.yellowAccent, width: 4),
-                      ),
-                      child: const Text(
-                        "😱",
-                        style: TextStyle(fontSize: 70),
-                      ),
-                    )
-                    .animate(onPlay: (controller) => controller.repeat(reverse: true))
-                    .shake(hz: 6, duration: 600.ms)
-                    .scale(begin: const Offset(0.9, 0.9), end: const Offset(1.1, 1.1)),
+                    Text("Darurat Photobooth! 📸", style: Theme.of(context).textTheme.displayMedium?.copyWith(color: AppTheme.darkText)).animate().fade(),
+                    const SizedBox(height: 10),
+                    Text(_statusText, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo)).animate().fade(),
                     
                     const SizedBox(height: 30),
 
-                    // Card Dialog Slengean
                     Container(
-                      padding: const EdgeInsets.all(24),
+                      height: 350,
+                      width: 280,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.black87,
                         borderRadius: BorderRadius.circular(24),
+                        border: Border.all(color: Colors.white, width: 4),
                         boxShadow: AppTheme.softShadow,
                       ),
-                      child: _TypewriterText(
-                        text: "Woy $friendName! Gawat darurat! Kue ultah mu na bawa lari asta! Kalau tidak diselamatkan, si duta klarifikasi bakalan jadi monster kabulammats! Buruan tolongin!",
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: _isCameraReady && _cameraController != null
+                            ? Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  CameraPreview(_cameraController!),
+                                  if (_isCapturing && _statusText.contains("..."))
+                                    Center(
+                                      child: Text("$_countdown", style: const TextStyle(fontSize: 120, color: Colors.white, fontWeight: FontWeight.bold, shadows: [Shadow(color: Colors.black, blurRadius: 10)]))
+                                          .animate(key: ValueKey(_countdown)).scale(curve: Curves.elasticOut, duration: 500.ms),
+                                    ),
+                                ],
+                              )
+                            : const Center(child: CircularProgressIndicator(color: Colors.white)),
                       ),
-                    ).animate().scale(delay: 300.ms, duration: 400.ms, curve: Curves.elasticOut),
-
-                    const SizedBox(height: 40),
-
-                    // Tombol Semangat
-                    ElevatedButton(
-                      onPressed: _startMission,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellowAccent,
-                        foregroundColor: Colors.black87,
-                        padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 18),
-                      ),
-                      child: const Text("GAS, SELAMATKAN ASTA Duta Klarifikasi! 🚀"),
-                    )
-                    .animate(onPlay: (controller) => controller.repeat(reverse: true))
-                    .scale(
-                      begin: const Offset(1.0, 1.0),
-                      end: const Offset(1.08, 1.08),
-                      duration: 600.ms,
-                      curve: Curves.easeInOut,
                     ),
+
+                    const SizedBox(height: 30),
+
+                    if (!_isCapturing && _isCameraReady) ...[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ChoiceChip(
+                            label: const Text("3 Foto (Strip)"),
+                            selected: _photoCountGoal == 3,
+                            onSelected: (val) => setState(() => _photoCountGoal = 3),
+                          ),
+                          const SizedBox(width: 16),
+                          ChoiceChip(
+                            label: const Text("6 Foto (Grid)"),
+                            selected: _photoCountGoal == 6,
+                            onSelected: (val) => setState(() => _photoCountGoal = 6),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: _startPhotobooth,
+                        style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryPink, padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16)),
+                        child: const Text("MULAI FOTO! 🚀", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      ).animate().scale(curve: Curves.elasticOut),
+                    ],
                   ],
                 ),
               ),
@@ -119,65 +198,6 @@ class _Layer2MissionScreenState extends State<Layer2MissionScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _TypewriterText extends StatefulWidget {
-  final String text;
-
-  const _TypewriterText({required this.text});
-
-  @override
-  State<_TypewriterText> createState() => _TypewriterTextState();
-}
-
-class _TypewriterTextState extends State<_TypewriterText> {
-  String _displayedText = '';
-  int _currentIndex = 0;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _startTyping();
-  }
-
-  void _startTyping() {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      if (!mounted) {
-        return;
-      }
-      
-      _timer = Timer.periodic(const Duration(milliseconds: 40), (timer) {
-        if (_currentIndex < widget.text.length) {
-          setState(() {
-            _displayedText += widget.text[_currentIndex];
-            _currentIndex++;
-          });
-        } else {
-          timer.cancel();
-        }
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      _displayedText,
-      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            height: 1.5,
-          ),
-      textAlign: TextAlign.center,
     );
   }
 }
