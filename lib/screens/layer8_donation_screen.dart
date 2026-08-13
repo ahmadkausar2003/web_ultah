@@ -115,7 +115,7 @@ class _Layer8DonationScreenState extends State<Layer8DonationScreen> {
                       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(24), border: Border.all(color: Colors.greenAccent, width: 3)),
                       child: Column(
                         children: [
-                          Text("Sebagai bentuk apresiasi web dan studio foto gratis ini... 😌\n\nKalau $friendName kebetulan kesurupan pengen transfer 100 ribu buat jajanin kawanmu ini, pintu rekeningku terbuka sangat lebar lho! 😂✌️", style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.5), textAlign: TextAlign.center),
+                          Text("Sebagai bentuk apresiasi karena web dan studio foto gratis ini sangat luar biasa... 😌\n\nKalau $friendName kebetulan kesurupan pengin transfer 100 ribu buat jajanin kawanmu ini, pintu rekeningku terbuka sangat lebar lho! 💸\n\nEh, tapi bercanda yaaa! Jangan beneran ditransfer 100 ribu... (50 ribu aja cukup wkwk). Nggak deng, canda! Kado ini 100% ikhlas dari hati! 😂✌️", style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.5), textAlign: TextAlign.center),
                           const SizedBox(height: 30),
                           Container(
                             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
