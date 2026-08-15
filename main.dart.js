@@ -94168,7 +94168,7 @@ A.arp.prototype={
 $1(a){return B.Jj},
 $S:597}
 A.arv.prototype={
-$0(){return this.a.TN(this.b,"Dewi","all is well")},
+$0(){return this.a.TN(this.b,"Dewi","boboiboy")},
 $S:0}
 A.arw.prototype={
 $0(){return this.a.TN(this.b,"Nabila","all is well")},
