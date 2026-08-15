@@ -163,7 +163,7 @@ class _Layer1GateScreenState extends State<Layer1GateScreen> {
                       subtitle: "Duta Melankolis",
                       icon: "💃🏻",
                       color: const Color(0xFFB9A0E0),
-                      onTap: () => _showPasswordDialog(context, "Dewi", "all is well"),
+                      onTap: () => _showPasswordDialog(context, "Dewi", "boboiboy"),
                     ).animate().fade(delay: 300.ms).slideX(begin: -0.3),
 
                     const SizedBox(height: 20),
